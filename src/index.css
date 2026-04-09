@@ -6,34 +6,34 @@
 
 @layer base {
   :root {
-    --background: 30 10% 6%;
-    --foreground: 45 30% 88%;
-    --card: 30 8% 10%;
-    --card-foreground: 45 30% 88%;
-    --popover: 30 8% 10%;
-    --popover-foreground: 45 30% 88%;
-    --primary: 55 60% 75%;
-    --primary-foreground: 30 10% 6%;
-    --secondary: 30 8% 14%;
-    --secondary-foreground: 45 30% 88%;
-    --muted: 30 6% 12%;
-    --muted-foreground: 30 8% 45%;
-    --accent: 30 8% 14%;
-    --accent-foreground: 45 30% 88%;
+    --background: 0 0% 100%;
+    --foreground: 215 25% 20%;
+    --card: 210 40% 98%;
+    --card-foreground: 215 25% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 20%;
+    --primary: 217 91% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 215 25% 20%;
+    --muted: 214 32% 95%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 214 32% 91%;
+    --accent-foreground: 215 25% 20%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 30 6% 16%;
-    --input: 30 6% 16%;
-    --ring: 55 60% 75%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 50%;
     --radius: 0.5rem;
-    --sidebar-background: 30 10% 6%;
-    --sidebar-foreground: 45 30% 88%;
-    --sidebar-primary: 55 60% 75%;
-    --sidebar-primary-foreground: 30 10% 6%;
-    --sidebar-accent: 30 8% 14%;
-    --sidebar-accent-foreground: 45 30% 88%;
-    --sidebar-border: 30 6% 16%;
-    --sidebar-ring: 55 60% 75%;
+    --sidebar-background: 210 40% 96%;
+    --sidebar-foreground: 215 25% 20%;
+    --sidebar-primary: 217 91% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 32% 91%;
+    --sidebar-accent-foreground: 215 25% 20%;
+    --sidebar-border: 214 32% 85%;
+    --sidebar-ring: 217 91% 50%;
   }
 }
 
@@ -51,16 +51,16 @@
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, hsl(55 60% 75%), hsl(35 50% 65%));
+    background: linear-gradient(135deg, hsl(217 91% 50%), hsl(199 89% 48%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .hero-gradient {
-    background: linear-gradient(145deg, hsl(30 15% 12%), hsl(25 20% 8%), hsl(340 15% 10%));
+    background: linear-gradient(145deg, hsl(210 40% 96%), hsl(214 32% 91%), hsl(210 40% 98%));
   }
   .card-shadow {
-    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+    box-shadow: 0 8px 32px -8px hsl(217 91% 50% / 0.1);
   }
 }
 
