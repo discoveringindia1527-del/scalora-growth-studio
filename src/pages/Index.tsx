@@ -22,12 +22,6 @@ const services = [
   { icon: Megaphone, title: "Full-Stack Growth", description: "End-to-end growth strategy. We combine organic, paid, community, and product loops into a unified engine.", platforms: [] },
 ];
 
-const principles = [
-  "Data-driven execution",
-  "Full-funnel thinking",
-  "Platform-native strategy",
-  "Speed to results",
-];
 
 const whyUs = [
   { num: "01", title: "Execution over theory", desc: "We don't deliver decks. We deliver results. Every strategy comes with a clear execution plan and weekly performance reviews." },
