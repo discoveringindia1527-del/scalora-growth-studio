@@ -47,28 +47,24 @@ const Index = () => (
     {/* Who We Are */}
     <section className="py-24 md:py-32">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <div className="text-xs uppercase tracking-widest text-primary mb-4">Who We Are</div>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-6">
-              A growth agency that <span className="text-gradient">actually grows things</span>
-            </h2>
-            <img src={teamMeeting} alt="Scalora team meeting" width={1200} height={800} className="rounded-xl w-full mt-6" loading="lazy" />
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              Scalora is a full-stack growth agency built for brands that refuse to plateau. We combine deep platform expertise with rigorous data analysis to engineer growth systems that compound over time. No fluff. No vanity metrics. Just measurable, sustainable scale.
-            </p>
-            <ul className="space-y-4">
-              {principles.map((p) => (
-                <li key={p} className="flex items-center gap-3 text-foreground">
-                  <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
-                  <span className="font-display font-medium">{p}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="text-center mb-10">
+          <div className="text-xs uppercase tracking-widest text-primary mb-4">Who We Are</div>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
+            A growth agency that <span className="text-gradient">actually grows things</span>
+          </h2>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="max-w-5xl mx-auto">
+          <div className="rounded-2xl overflow-hidden border border-border">
+            <video
+              src="/videos/scalora-about.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
 
