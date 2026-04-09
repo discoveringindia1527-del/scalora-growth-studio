@@ -9,6 +9,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import ServiceCard from "@/components/ServiceCard";
 import CaseStudyPreview from "@/components/CaseStudyPreview";
 import HeroSlider from "@/components/HeroSlider";
+import AboutVideo from "@/components/AboutVideo";
 
 
 const ease = [0.22, 1, 0.36, 1];
