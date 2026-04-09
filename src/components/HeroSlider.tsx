@@ -44,7 +44,7 @@ const HeroSlider = () => {
   }, [active, next]);
 
   return (
-    <section className="relative min-h-screen flex items-end pb-20 md:pb-32 pt-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-end pb-0 pt-16 overflow-hidden">
       {/* Video backgrounds */}
       {slides.map((slide, i) => (
         <div
@@ -60,72 +60,61 @@ const HeroSlider = () => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Dark overlay for text legibility */}
-          <div className="absolute inset-0 bg-background/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+          {/* Subtle bottom gradient only */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
         </div>
       ))}
 
-      {/* Content */}
-      <div className="container mx-auto px-6 relative z-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.7, ease }}
-            className="max-w-4xl"
-          >
-            <div className="text-xs uppercase tracking-widest text-primary mb-4 font-display">
-              {slides[active].label}
-            </div>
-            <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-[5.5rem] leading-[1.05] text-foreground mb-4">
-              {slides[active].heading}{" "}
-              <span className="text-gradient">{slides[active].headingAccent}</span>
-            </h1>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
-              {slides[active].description}
-            </p>
-            <Link to={slides[active].href}>
-              <Button variant="hero" size="lg" className="gap-2">
-                {slides[active].cta} <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation */}
-        <div className="flex items-center gap-4 mt-12">
-          <button onClick={prev} className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-
-          {/* Progress indicators */}
-          <div className="flex gap-2">
-            {slides.map((_, i) => (
+      {/* Bottom bar */}
+      <div className="relative z-10 w-full bg-background/70 backdrop-blur-xl border-t border-border/30">
+        <div className="container mx-auto px-6 py-5 flex items-center justify-between">
+          {/* Slide labels */}
+          <div className="flex items-center gap-8 md:gap-12">
+            {slides.map((slide, i) => (
               <button
-                key={i}
+                key={slide.id}
                 onClick={() => setActive(i)}
-                className="relative h-1 rounded-full overflow-hidden transition-all duration-300"
-                style={{ width: active === i ? 48 : 24 }}
+                className="text-left transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-border/40 rounded-full" />
-                {active === i && (
+                <AnimatePresence mode="wait">
                   <motion.div
-                    className="absolute inset-0 bg-primary rounded-full origin-left"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: INTERVAL / 1000, ease: "linear" }}
-                  />
-                )}
+                    key={active === i ? "active" : "inactive"}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className={`font-display font-semibold text-sm md:text-base transition-colors duration-300 ${active === i ? "text-primary" : "text-muted-foreground"}`}>
+                      {slide.label}
+                    </div>
+                    <div className={`font-display text-xs md:text-sm mt-0.5 transition-colors duration-300 ${active === i ? "text-foreground" : "text-muted-foreground/60"}`}>
+                      {slide.tagline}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+                {/* Progress bar under active */}
+                <div className="relative h-0.5 mt-2 rounded-full overflow-hidden bg-border/30" style={{ width: 120 }}>
+                  {active === i && (
+                    <motion.div
+                      className="absolute inset-0 bg-primary rounded-full origin-left"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: INTERVAL / 1000, ease: "linear" }}
+                    />
+                  )}
+                </div>
               </button>
             ))}
           </div>
 
-          <button onClick={next} className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
-            <ChevronRight className="w-4 h-4" />
-          </button>
+          {/* Nav arrows */}
+          <div className="flex items-center gap-2">
+            <button onClick={prev} className="w-9 h-9 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button onClick={next} className="w-9 h-9 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
