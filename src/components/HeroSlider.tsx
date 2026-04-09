@@ -1,31 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
     id: 0,
     video: "/videos/moemate-bg.mp4",
-    label: "Case Study — MoeMate",
-    heading: "Scaling emotions",
-    headingAccent: "at scale",
-    description:
-      "8M+ organic views. 3.2x user growth. 60 days. We turned an AI companion app into a cultural moment.",
-    href: "/case-study/moemate",
-    cta: "Read the case study",
+    label: "MoeMate",
+    tagline: "Scaling Emotions at Scale",
   },
   {
     id: 1,
     video: "/videos/heyoz-bg.mp4",
-    label: "Case Study — HeyOz",
-    heading: "AI ads in minutes,",
-    headingAccent: "not months",
-    description:
-      "340% lead growth. 60% lower CAC. We built an organic engine that made paid feel optional.",
-    href: "/case-study/heyoz",
-    cta: "Read the case study",
+    label: "HeyOz",
+    tagline: "Ads in minutes, not months",
   },
 ];
 
