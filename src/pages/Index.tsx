@@ -1,28 +1,34 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, TrendingUp, Video, Users, Target, Search, Megaphone } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
-import AnimatedCounter from "@/components/AnimatedCounter";
-import ServiceCard from "@/components/ServiceCard";
 import CaseStudyPreview from "@/components/CaseStudyPreview";
 import HeroSlider from "@/components/HeroSlider";
 import AboutVideo from "@/components/AboutVideo";
+import serviceGrowth from "@/assets/service-growth-engine.png";
+import servicePerformance from "@/assets/service-performance.png";
+import servicePartnership from "@/assets/service-partnership.png";
 
-
-const ease = [0.22, 1, 0.36, 1];
-
-const services = [
-  { icon: TrendingUp, title: "Organic Growth", description: "We build content engines that compound. Platform-native strategies for sustainable, scalable growth across every channel.", platforms: ["Instagram", "TikTok", "X", "Reddit", "LinkedIn"] },
-  { icon: Video, title: "UGC Campaigns", description: "Authentic creator content that converts. We source, brief, and manage UGC at scale — from concept to performance.", platforms: ["Instagram", "TikTok"] },
-  { icon: Users, title: "Influencer Marketing", description: "Strategic partnerships with creators who move culture. Data-driven selection, negotiation, and campaign management.", platforms: ["Instagram", "TikTok"] },
-  { icon: Target, title: "Paid Ads — B2B & B2C", description: "Full-funnel paid media that delivers measurable ROAS. From creative strategy to audience architecture.", platforms: ["Meta Ads", "B2B", "B2C"] },
-  { icon: Search, title: "SEO & GEO", description: "Own the search landscape. Technical SEO, content strategy, and geo-targeted campaigns that compound over time.", platforms: [] },
-  { icon: Megaphone, title: "Full-Stack Growth", description: "End-to-end growth strategy. We combine organic, paid, community, and product loops into a unified engine.", platforms: [] },
+const serviceCards = [
+  {
+    image: serviceGrowth,
+    title: "Growth Engine",
+    description: "We build organic content engines and UGC campaigns that compound — platform-native strategies across Instagram, TikTok, X, Reddit & LinkedIn.",
+  },
+  {
+    image: servicePerformance,
+    title: "Performance & Precision",
+    description: "Full-funnel paid media, SEO & GEO strategies that deliver measurable ROAS — from creative strategy to audience architecture.",
+  },
+  {
+    image: servicePartnership,
+    title: "The Power of Partnership",
+    description: "Strategic influencer partnerships and end-to-end growth strategy. We combine organic, paid, community, and product loops into a unified engine.",
+  },
 ];
-
 
 const whyUs = [
   { num: "01", title: "Execution over theory", desc: "We don't deliver decks. We deliver results. Every strategy comes with a clear execution plan and weekly performance reviews." },
@@ -54,35 +60,43 @@ const Index = () => (
       </div>
     </section>
 
-    {/* Stats */}
-    <section className="border-y border-border py-16">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <AnimatedCounter end={6} suffix="M+" label="Users Scaled" />
-          <AnimatedCounter end={150} suffix="+" label="Campaigns Run" />
-          <AnimatedCounter end={40} suffix="x" label="Average ROAS" />
-          <AnimatedCounter end={12} suffix="+" label="Platforms" />
-        </div>
-      </div>
-    </section>
-
     {/* Services */}
     <section className="py-24 md:py-32">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <div className="text-xs uppercase tracking-widest text-primary mb-4">Services</div>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
-              What we <span className="text-gradient">do best</span>
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-sm max-w-md">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-foreground mb-4">
+            What we <span className="text-gradient">do best.</span>
+          </h2>
+          <p className="text-muted-foreground max-w-lg mx-auto">
             From organic content engines to paid media optimization — we cover the full spectrum of digital growth.
           </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s, i) => (
-            <ServiceCard key={s.title} {...s} index={i} />
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {serviceCards.map((card, i) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="group bg-card border border-border rounded-2xl p-6 card-shadow hover:border-primary/30 transition-all relative overflow-hidden"
+            >
+              <div className="absolute top-4 right-4 w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground group-hover:border-primary/40 group-hover:text-primary transition-colors">
+                <Plus className="w-4 h-4" />
+              </div>
+              <div className="flex items-center justify-center h-56 mb-6">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  loading="lazy"
+                  width={800}
+                  height={800}
+                  className="w-48 h-48 object-contain group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <h3 className="font-display font-semibold text-lg text-foreground mb-2">{card.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
+            </motion.div>
           ))}
         </div>
       </div>
