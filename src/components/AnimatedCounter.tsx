@@ -27,7 +27,7 @@ const AnimatedCounter = ({ end, suffix = "", prefix = "", label }: AnimatedCount
         setCount(end);
         clearInterval(interval);
       } else {
-        setCount(Math.floor(current));
+        setCount(Number(current.toFixed(1)));
       }
     }, duration / frames);
     return () => clearInterval(interval);
