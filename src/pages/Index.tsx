@@ -8,7 +8,7 @@ import Marquee from "@/components/Marquee";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ServiceCard from "@/components/ServiceCard";
 import CaseStudyPreview from "@/components/CaseStudyPreview";
-import HeroBackground from "@/components/HeroBackground";
+import HeroSlider from "@/components/HeroSlider";
 import teamMeeting from "@/assets/team-meeting.jpg";
 
 const ease = [0.22, 1, 0.36, 1];
@@ -40,27 +40,7 @@ const Index = () => (
     <Navbar />
 
     {/* Hero */}
-    <section className="relative min-h-screen hero-gradient flex items-end pb-20 md:pb-32 pt-16 overflow-hidden">
-      <HeroBackground />
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease }}
-          className="max-w-4xl"
-        >
-          <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-[5.5rem] leading-[1.05] text-foreground mb-8">
-            Growth partners for{" "}
-            <span className="text-gradient">ambitious brands</span>
-          </h1>
-          <Link to="/services">
-            <Button variant="hero" size="lg" className="gap-2">
-              Explore our services <ArrowRight className="w-4 h-4" />
-            </Button>
-          </Link>
-        </motion.div>
-      </div>
-    </section>
+    <HeroSlider />
 
     <Marquee />
 
