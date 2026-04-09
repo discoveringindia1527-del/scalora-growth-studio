@@ -48,16 +48,7 @@ const Index = () => (
           </h2>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} className="max-w-5xl mx-auto">
-          <div className="rounded-2xl overflow-hidden border border-border">
-            <video
-              src="/videos/scalora-about.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto"
-            />
-          </div>
+          <AboutVideo />
         </motion.div>
       </div>
     </section>
