@@ -101,30 +101,6 @@ const Index = () => (
         </div>
       </div>
     </section>
-
-    {/* Why Us */}
-    <section className="py-24 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-6">
-        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <div className="text-xs uppercase tracking-widest text-primary mb-4">Why Us</div>
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
-            Built <span className="text-gradient">different</span>
-          </h2>
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {whyUs.map((w, i) => (
-            <motion.div key={w.num} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-card border border-border rounded-xl p-6 card-shadow"
-            >
-              <div className="text-gradient font-display font-bold text-4xl mb-4">{w.num}</div>
-              <h3 className="font-display font-semibold text-lg text-foreground mb-2">{w.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{w.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-
     {/* Case Studies */}
     <section className="py-24 md:py-32">
       <div className="container mx-auto px-6">
@@ -154,6 +130,30 @@ const Index = () => (
         </div>
       </div>
     </section>
+    {/* Why Us */}
+    <section className="py-24 md:py-32 bg-muted/30">
+      <div className="container mx-auto px-6">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+          <div className="text-xs uppercase tracking-widest text-primary mb-4">Why Us</div>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
+            Built <span className="text-gradient">different</span>
+          </h2>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {whyUs.map((w, i) => (
+            <motion.div key={w.num} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="bg-card border border-border rounded-xl p-6 card-shadow"
+            >
+              <div className="text-gradient font-display font-bold text-4xl mb-4">{w.num}</div>
+              <h3 className="font-display font-semibold text-lg text-foreground mb-2">{w.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{w.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    
 
     {/* CTA */}
     <section className="pb-24 md:pb-32">
