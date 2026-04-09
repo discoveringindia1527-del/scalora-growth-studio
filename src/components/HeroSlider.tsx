@@ -1,108 +1,131 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const slides = [
-  {
-    id: 0,
-    video: "/videos/moemate-bg.mp4",
-    label: "MoeMate",
-    tagline: "Scaling Emotions at Scale",
-  },
-  {
-    id: 1,
-    video: "/videos/heyoz-bg.mp4",
-    label: "HeyOz",
-    tagline: "Ads in minutes, not months",
-  },
-];
-
-const ease = [0.22, 1, 0.36, 1];
-const INTERVAL = 7000;
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 const HeroSlider = () => {
-  const [active, setActive] = useState(0);
-
-  const next = useCallback(() => setActive((p) => (p + 1) % slides.length), []);
-  const prev = useCallback(() => setActive((p) => (p - 1 + slides.length) % slides.length), []);
-
-  useEffect(() => {
-    const id = setInterval(next, INTERVAL);
-    return () => clearInterval(id);
-  }, [active, next]);
-
   return (
-    <section className="relative min-h-screen flex items-end pb-0 pt-16 overflow-hidden">
-      {/* Video backgrounds */}
-      {slides.map((slide, i) => (
-        <div
-          key={slide.id}
-          className="absolute inset-0 transition-opacity duration-1000"
-          style={{ opacity: active === i ? 1 : 0 }}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated growth lines background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="none"
         >
-          <video
-            src={slide.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+          {/* Growth line 1 */}
+          <motion.path
+            d="M0 600 Q200 580 400 500 T800 300 T1200 200"
+            fill="none"
+            stroke="hsl(217 91% 50% / 0.08)"
+            strokeWidth="2"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "loop", repeatDelay: 1 }}
           />
-          {/* Subtle bottom gradient only */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          {/* Growth line 2 */}
+          <motion.path
+            d="M0 650 Q300 600 500 480 T900 250 T1200 150"
+            fill="none"
+            stroke="hsl(217 91% 50% / 0.12)"
+            strokeWidth="2.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5, repeat: Infinity, repeatType: "loop", repeatDelay: 1 }}
+          />
+          {/* Growth line 3 */}
+          <motion.path
+            d="M0 700 Q250 650 450 520 T850 280 T1200 100"
+            fill="none"
+            stroke="hsl(199 89% 48% / 0.10)"
+            strokeWidth="2"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 4, ease: "easeInOut", delay: 1, repeat: Infinity, repeatType: "loop", repeatDelay: 1 }}
+          />
+          {/* Animated dots along the growth path */}
+          <motion.circle
+            cx="0"
+            cy="0"
+            r="4"
+            fill="hsl(217 91% 50% / 0.3)"
+            initial={{ offsetDistance: "0%" }}
+            animate={{ offsetDistance: "100%" }}
+            transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "loop", repeatDelay: 1 }}
+            style={{ offsetPath: "path('M0 600 Q200 580 400 500 T800 300 T1200 200')" }}
+          />
+          <motion.circle
+            cx="0"
+            cy="0"
+            r="5"
+            fill="hsl(217 91% 50% / 0.25)"
+            initial={{ offsetDistance: "0%" }}
+            animate={{ offsetDistance: "100%" }}
+            transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5, repeat: Infinity, repeatType: "loop", repeatDelay: 1 }}
+            style={{ offsetPath: "path('M0 650 Q300 600 500 480 T900 250 T1200 150')" }}
+          />
+        </svg>
+
+        {/* Floating growth bars */}
+        <div className="absolute bottom-20 left-10 flex items-end gap-2 opacity-[0.06]">
+          {[40, 65, 50, 80, 70, 95, 85, 100].map((h, i) => (
+            <motion.div
+              key={i}
+              className="w-6 bg-primary rounded-t"
+              initial={{ height: 0 }}
+              animate={{ height: `${h}px` }}
+              transition={{ duration: 1, delay: i * 0.15, repeat: Infinity, repeatType: "reverse", repeatDelay: 2 }}
+            />
+          ))}
         </div>
-      ))}
 
-      {/* Bottom bar */}
-      <div className="relative z-10 w-full bg-background/70 backdrop-blur-xl border-t border-border/30">
-        <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-          {/* Slide labels */}
-          <div className="flex items-center gap-8 md:gap-12">
-            {slides.map((slide, i) => (
-              <button
-                key={slide.id}
-                onClick={() => setActive(i)}
-                className="text-left transition-all duration-300"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active === i ? "active" : "inactive"}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className={`font-display font-semibold text-sm md:text-base transition-colors duration-300 ${active === i ? "text-primary" : "text-muted-foreground"}`}>
-                      {slide.label}
-                    </div>
-                    <div className={`font-display text-xs md:text-sm mt-0.5 transition-colors duration-300 ${active === i ? "text-foreground" : "text-muted-foreground/60"}`}>
-                      {slide.tagline}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-                {/* Progress bar under active */}
-                <div className="relative h-0.5 mt-2 rounded-full overflow-hidden bg-border/30" style={{ width: 120 }}>
-                  {active === i && (
-                    <motion.div
-                      className="absolute inset-0 bg-primary rounded-full origin-left"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: INTERVAL / 1000, ease: "linear" }}
-                    />
-                  )}
-                </div>
-              </button>
-            ))}
-          </div>
+        {/* Floating growth bars right side */}
+        <div className="absolute top-32 right-16 flex items-end gap-2 opacity-[0.05]">
+          {[30, 55, 45, 75, 60, 90].map((h, i) => (
+            <motion.div
+              key={i}
+              className="w-5 bg-primary rounded-t"
+              initial={{ height: 0 }}
+              animate={{ height: `${h}px` }}
+              transition={{ duration: 1.2, delay: i * 0.2 + 0.5, repeat: Infinity, repeatType: "reverse", repeatDelay: 2.5 }}
+            />
+          ))}
+        </div>
 
-          {/* Nav arrows */}
-          <div className="flex items-center gap-2">
-            <button onClick={prev} className="w-9 h-9 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button onClick={next} className="w-9 h-9 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+        {/* Subtle radial glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/[0.03] blur-3xl" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight mb-6">
+            AI Native Performance.
+            <br />
+            <span className="text-gradient">Scale Without Limits.</span>
+          </h1>
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12">
+            We build growth engines that compound — powered by AI, driven by data, designed to scale.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Bottom bar with two tabs */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 bg-background/70 backdrop-blur-xl border-t border-border/30">
+        <div className="container mx-auto px-6 py-5 flex items-center justify-center gap-4 sm:gap-6">
+          <Link to="/services">
+            <Button variant="hero" size="lg" className="text-sm md:text-base">
+              Explore Our Services
+            </Button>
+          </Link>
+          <Link to="/contact">
+            <Button variant="heroOutline" size="lg" className="text-sm md:text-base">
+              Book a Call
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
